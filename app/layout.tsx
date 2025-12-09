@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <Script
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
