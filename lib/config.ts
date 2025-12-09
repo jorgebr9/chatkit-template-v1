@@ -7,25 +7,25 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
-    label: "O que você pode fazer?",
-    prompt: "O que você pode fazer?",
+    label: "What can you do?",
+    prompt: "What can you do?",
     icon: "circle-question",
   },
 ];
 
-export const PLACEHOLDER_INPUT = "Pergunte qualquer coisa...";
+export const PLACEHOLDER_INPUT = "Ask anything...";
 
-export const GREETING = "Olá, como posso ajudar você hoje?";
+export const GREETING = "How can I help you today?";
 
 export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   color: {
     grayscale: {
-      hue: 0, // Remover matiz de cor, usar apenas tons neutros
-      tint: 0, // Sem tint
-      shade: -1, // Tons escuros (preto e cinza)
+      hue: 220,
+      tint: 6,
+      shade: theme === "dark" ? -1 : -4,
     },
     accent: {
-      primary: "#e5e7eb", // Cinza claro para contraste
+      primary: theme === "dark" ? "#f1f5f9" : "#0f172a",
       level: 1,
     },
   },

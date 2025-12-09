@@ -286,9 +286,13 @@ export function ChatKitPanel({
       params: Record<string, unknown>;
     }) => {
       if (invocation.name === "switch_theme") {
-        // Ignorar solicitações de mudança de tema - sempre dark
-        if (isDev) {
-          console.debug("[ChatKitPanel] switch_theme ignorado - modo dark forçado");
+        const requested = invocation.params.theme;
+        if (requested === "light" || requested === "dark") {
+          if (isDev) {
+            console.debug("[ChatKitPanel] switch_theme", requested);
+          }
+          onThemeRequest(requested);
+          return { success: true };
         }
         return { success: false };
       }
@@ -340,7 +344,7 @@ export function ChatKitPanel({
   }
 
   return (
-    <div className="relative pb-8 flex h-[90vh] w-full rounded-2xl flex-col overflow-hidden bg-black shadow-sm transition-colors dark:bg-black">
+    <div className="relative pb-8 flex h-[90vh] w-full rounded-2xl flex-col overflow-hidden bg-white shadow-sm transition-colors dark:bg-slate-900">
       <ChatKit
         key={widgetInstanceKey}
         control={chatkit.control}
@@ -355,7 +359,7 @@ export function ChatKitPanel({
         fallbackMessage={
           blockingError || !isInitializingSession
             ? null
-            : "Carregando sessão do assistente..."
+            : "Loading assistant session..."
         }
         onRetry={blockingError && errors.retryable ? handleResetChat : null}
         retryLabel="Restart chat"
